@@ -7,11 +7,11 @@ type ContactLinkProps = {
 export function ContactLink({ item }: ContactLinkProps) {
   return (
     <a
-      className="block rounded border border-[var(--color-border)] bg-[rgba(16,22,42,0.72)] p-4 transition hover:border-[var(--color-accent-cyan)]"
+      className="rpg-card block p-4"
       href={item.href}
     >
       <span className="pixel-label text-[var(--color-accent-cyan)]">{item.label}</span>
-      <span className="mt-2 block text-[var(--color-text-primary)]">{item.value}</span>
+      <span className="mt-2 block break-words text-[var(--color-text-primary)]">{item.value}</span>
     </a>
   );
 }

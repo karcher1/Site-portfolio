@@ -1,5 +1,4 @@
 import { ContactLink } from "../components/ContactLink";
-import { PixelPanel } from "../components/PixelPanel";
 import { SectionHeading } from "../components/SectionHeading";
 import type { PortfolioContent } from "../data/portfolioContent";
 
@@ -13,20 +12,25 @@ export function ContactSection({ content }: SectionProps) {
   return (
     <section id={section.id}>
       <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
-      <PixelPanel>
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
-          <p className="text-lg leading-8 text-[var(--color-text-secondary)]">{section.text}</p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-            {section.items.map((item) => (
-              <ContactLink key={item.label} item={item} />
-            ))}
-            <div className="rounded border border-[var(--color-border)] bg-[rgba(16,22,42,0.72)] p-4">
-              <span className="pixel-label text-[var(--color-accent-gold)]">CV</span>
-              <span className="mt-2 block text-[var(--color-text-primary)]">{section.cvLabel}</span>
-            </div>
+      <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
+        <article className="rpg-panel">
+          <p className="rpg-panel-title pixel-label">{section.eyebrow}</p>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--color-text-secondary)]">
+            {section.text}
+          </p>
+        </article>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          {section.items.map((item) => (
+            <ContactLink key={item.label} item={item} />
+          ))}
+          <div className="rpg-card p-4">
+            <span className="pixel-label text-[var(--color-accent-gold)]">CV</span>
+            <span className="mt-2 block break-words text-[var(--color-text-primary)]">
+              {section.cvLabel}
+            </span>
           </div>
         </div>
-      </PixelPanel>
+      </div>
     </section>
   );
 }

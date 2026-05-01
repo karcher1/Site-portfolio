@@ -1,4 +1,3 @@
-import { PixelPanel } from "../components/PixelPanel";
 import { SectionHeading } from "../components/SectionHeading";
 import type { PortfolioContent } from "../data/portfolioContent";
 
@@ -12,13 +11,16 @@ export function AboutSection({ content }: SectionProps) {
   return (
     <section id={section.id}>
       <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
-      <PixelPanel>
-        <div className="grid gap-5 text-base leading-8 text-[var(--color-text-secondary)] lg:grid-cols-3">
-          {section.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </PixelPanel>
+      <div className="grid gap-4 text-base leading-8 text-[var(--color-text-secondary)] lg:grid-cols-3">
+        {section.paragraphs.map((paragraph, index) => (
+          <article className="rpg-card p-5" key={paragraph}>
+            <p className="pixel-label mb-3 text-[var(--color-accent-gold)]">
+              Log {String(index + 1).padStart(2, "0")}
+            </p>
+            <p>{paragraph}</p>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

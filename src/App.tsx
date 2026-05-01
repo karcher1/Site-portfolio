@@ -18,14 +18,14 @@ const sections = [
 
 function App() {
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <div className="min-h-screen overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <HeroSection
         assets={portfolioContent.assets}
         content={portfolioContent.hero}
         nav={portfolioContent.nav}
         profile={portfolioContent.profile}
       />
-      <main className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+      <main className="rpg-main mx-auto flex w-full max-w-7xl flex-col gap-12 px-4 py-12 sm:px-6 lg:gap-16 lg:px-8 lg:py-20">
         {sections.map((Section) => (
           <Section key={Section.name} content={portfolioContent} />
         ))}

@@ -12,7 +12,7 @@ export function ButtonLink({ item, variant = "primary" }: ButtonLinkProps) {
       : "border-[var(--color-border)] bg-[rgba(21,26,46,0.86)] text-[var(--color-text-primary)]";
 
   return (
-    <a className={`rpg-button ${variantClass}`} href={item.href}>
+    <a className={`rpg-button w-full sm:w-auto ${variantClass}`} href={item.href}>
       {item.label}
     </a>
   );

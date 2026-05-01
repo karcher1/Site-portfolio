@@ -6,17 +6,30 @@ type StatBarProps = {
 
 export function StatBar({ skill }: StatBarProps) {
   return (
-    <div className="rounded border border-[var(--color-border)] bg-[rgba(16,22,42,0.72)] p-4">
+    <div className="rpg-card p-4">
       <div className="mb-3 flex items-center justify-between gap-3">
-        <h3 className="font-medium text-[var(--color-text-primary)]">{skill.name}</h3>
-        <span className="pixel-label text-[var(--color-accent-cyan)]">{skill.value}</span>
+        <h3 className="font-medium leading-6 text-[var(--color-text-primary)]">{skill.name}</h3>
+        <span className="pixel-label rounded border border-[rgba(94,234,212,0.32)] bg-[rgba(94,234,212,0.08)] px-2 py-1 text-[var(--color-accent-cyan)]">
+          {skill.value}
+        </span>
       </div>
-      <div className="h-3 overflow-hidden rounded-sm border border-[rgba(94,234,212,0.35)] bg-[rgba(11,16,32,0.9)]">
+      <div
+        className="stat-track"
+        role="progressbar"
+        aria-label={skill.name}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={skill.value}
+      >
         <div
-          className="h-full bg-[linear-gradient(90deg,var(--color-accent-green),var(--color-accent-cyan))]"
+          className="stat-fill"
           style={{ width: `${skill.value}%` }}
           aria-hidden="true"
         />
+      </div>
+      <div className="mt-2 flex justify-between text-[0.7rem] text-[var(--color-muted)]" aria-hidden="true">
+        <span>0</span>
+        <span>100</span>
       </div>
     </div>
   );
