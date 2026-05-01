@@ -11,7 +11,12 @@ export function ToolsSection({ content }: SectionProps) {
 
   return (
     <section id={section.id}>
-      <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
+      <SectionHeading
+        description={section.description}
+        eyebrow={section.eyebrow}
+        icon={section.icon}
+        title={section.title}
+      />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {section.items.map((tool) => (
           <ToolCard key={tool.name} tool={tool} />

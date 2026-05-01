@@ -11,7 +11,12 @@ export function SkillsSection({ content }: SectionProps) {
 
   return (
     <section id={section.id}>
-      <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
+      <SectionHeading
+        description={section.description}
+        eyebrow={section.eyebrow}
+        icon={section.icon}
+        title={section.title}
+      />
       <div className="grid gap-4 md:grid-cols-2">
         {section.items.map((skill) => (
           <StatBar key={skill.name} skill={skill} />

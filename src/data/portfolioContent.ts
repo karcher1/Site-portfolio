@@ -29,6 +29,7 @@ export type Tool = {
 
 export type CaseStudy = {
   title: string;
+  summary: string;
   challenge: string;
   role: string;
   artifacts: string[];
@@ -42,6 +43,15 @@ export type ContactItem = {
   label: string;
   value: string;
   href: string;
+};
+
+export type CaseStudyLabels = {
+  quest: string;
+  challenge: string;
+  role: string;
+  result: string;
+  artifacts: string;
+  tools: string;
 };
 
 export type PortfolioContent = {
@@ -58,6 +68,7 @@ export type PortfolioContent = {
     title: string;
     subtitle: string;
     statement: string;
+    highlights: string[];
     fields: ProfileField[];
     ctas: {
       primary: NavItem;
@@ -68,6 +79,7 @@ export type PortfolioContent = {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
     paragraphs: string[];
   };
@@ -75,6 +87,7 @@ export type PortfolioContent = {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
     items: Skill[];
   };
@@ -82,6 +95,7 @@ export type PortfolioContent = {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
     items: Tool[];
   };
@@ -89,13 +103,16 @@ export type PortfolioContent = {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
+    labels: CaseStudyLabels;
     items: CaseStudy[];
   };
   achievements: {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
     badges: Asset[];
     items: string[];
@@ -104,6 +121,7 @@ export type PortfolioContent = {
     id: string;
     eyebrow: string;
     title: string;
+    description?: string;
     icon: Asset;
     text: string;
     items: ContactItem[];
@@ -145,9 +163,9 @@ export const portfolioContent: PortfolioContent = {
   },
   nav: [
     { label: "Профиль", href: "#profile" },
-    { label: "Статы", href: "#skills" },
-    { label: "Инвентарь", href: "#tools" },
-    { label: "Квесты", href: "#quests" },
+    { label: "Навыки", href: "#skills" },
+    { label: "Инструменты", href: "#tools" },
+    { label: "Кейсы", href: "#quests" },
     { label: "Контакт", href: "#contact" },
   ],
   hero: {
@@ -155,25 +173,35 @@ export const portfolioContent: PortfolioContent = {
     title: "[Твоё имя]",
     subtitle: "Business Analyst",
     statement:
-      "Превращаю бизнес-хаос в понятные требования, процессы и решения для команды разработки.",
+      "Помогаю бизнесу и командам разработки быстро прояснять цели, фиксировать требования, описывать процессы и превращать идеи в delivery-ready backlog.",
+    highlights: [
+      "Discovery и требования",
+      "AS-IS / TO-BE процессы",
+      "User stories для delivery",
+    ],
     fields: [
-      { label: "Class", value: "Business Analyst" },
-      { label: "Specialization", value: "Requirements & Process Analysis" },
+      { label: "Класс", value: "Business Analyst" },
+      { label: "Специализация", value: "Requirements, Processes & Product Analysis" },
       {
-        label: "Current Quest",
-        value: "Разобраться в сложной задаче и превратить её в delivery-ready решение",
+        label: "Текущий квест",
+        value: "Прояснить сложную бизнес-задачу и подготовить понятный scope для команды",
       },
-      { label: "Main Skill", value: "Системное мышление + коммуникация со стейкхолдерами" },
+      {
+        label: "Главный навык",
+        value: "Системное мышление, фасилитация и перевод бизнес-языка в требования",
+      },
     ],
     ctas: {
-      primary: { label: "Посмотреть квесты", href: "#quests" },
-      secondary: { label: "Начать новый квест", href: "#contact" },
+      primary: { label: "Посмотреть кейсы", href: "#quests" },
+      secondary: { label: "Обсудить задачу", href: "#contact" },
     },
   },
   about: {
     id: "about",
     eyebrow: "CHARACTER BACKSTORY",
-    title: "Как я прохожу туман неопределённости",
+    title: "Как я превращаю неопределенность в план работы",
+    description:
+      "Подход к анализу: от первых вопросов и карты процесса до согласованных требований и критериев готовности.",
     icon: asset("public/assets/icons/icon-profile.png", "Иконка профиля"),
     paragraphs: [
       "Каждый проект начинается с тумана: неясные цели, разрозненные требования, разные ожидания стейкхолдеров и скрытые ограничения.",
@@ -184,7 +212,9 @@ export const portfolioContent: PortfolioContent = {
   skills: {
     id: "skills",
     eyebrow: "CORE STATS",
-    title: "Ключевые навыки",
+    title: "Навыки, которые помогают доводить задачи до разработки",
+    description:
+      "Компетенции, важные для discovery, согласования требований, описания процессов и поддержки delivery-команды.",
     icon: asset("public/assets/icons/icon-stats.png", "Иконка навыков"),
     items: [
       { name: "Requirements Analysis", value: 90 },
@@ -200,31 +230,44 @@ export const portfolioContent: PortfolioContent = {
   tools: {
     id: "tools",
     eyebrow: "INVENTORY",
-    title: "Рабочий набор инструментов",
+    title: "Инструменты для анализа, документации и синхронизации команды",
+    description:
+      "Не просто список сервисов, а набор инструментов для прозрачной работы с требованиями, процессами и данными.",
     icon: asset("public/assets/icons/icon-inventory.png", "Иконка инвентаря"),
     items: [
-      { name: "Jira", usage: "backlog, user stories, delivery tracking" },
-      { name: "Confluence", usage: "documentation, knowledge base, decision logs" },
-      { name: "Miro", usage: "workshops, process maps, discovery boards" },
-      { name: "Figma", usage: "prototype review, UI flows, requirements clarification" },
-      { name: "SQL", usage: "data checks, validation, exploratory analysis" },
-      { name: "Power BI", usage: "reporting logic, dashboards, data visibility" },
-      { name: "Postman", usage: "API checks and integration analysis" },
-      { name: "Draw.io / Lucidchart", usage: "process diagrams and system flows" },
+      { name: "Jira", usage: "backlog, user stories, acceptance criteria, delivery tracking" },
+      { name: "Confluence", usage: "требования, decision logs, база знаний проекта" },
+      { name: "Miro", usage: "воркшопы, discovery boards, карты процессов" },
+      { name: "Figma", usage: "проверка прототипов, UI flows, уточнение требований" },
+      { name: "SQL", usage: "проверка данных, валидация гипотез, exploratory analysis" },
+      { name: "Power BI", usage: "логика отчетности, dashboard requirements, метрики" },
+      { name: "Postman", usage: "API checks, сценарии интеграций, проверка контрактов" },
+      { name: "Draw.io / Lucidchart", usage: "BPMN, process diagrams, system flows" },
     ],
   },
   caseStudies: {
     id: "quests",
     eyebrow: "COMPLETED QUESTS",
-    title: "Проекты и кейсы",
+    title: "Кейсы: как анализ превращается в результат",
+    description:
+      "Анонимизированные примеры задач, где ценность BA — в структуре, согласовании и понятных артефактах для команды.",
     icon: asset("public/assets/icons/icon-quests.png", "Иконка квестов"),
+    labels: {
+      quest: "Quest Log",
+      challenge: "Задача",
+      role: "Моя роль",
+      result: "Результат",
+      artifacts: "Артефакты",
+      tools: "Инструменты",
+    },
     items: [
       {
         title: "Quest 01 — Автоматизация отчетности",
+        summary: "Собрал требования к dashboard и описал процесс, чтобы снизить зависимость от ручной отчетности.",
         challenge:
-          "Менеджеры тратили много времени на регулярные отчеты, а данные собирались вручную из нескольких источников.",
+          "Регулярные отчеты собирались вручную из нескольких источников, из-за чего процесс был медленным и непрозрачным.",
         role:
-          "Провел интервью со стейкхолдерами, описал AS-IS процесс, подготовил TO-BE сценарий, собрал требования к отчетности и согласовал структуру dashboard.",
+          "Провел интервью, описал AS-IS / TO-BE процесс, собрал требования к отчетности и согласовал структуру dashboard.",
         artifacts: [
           "AS-IS / TO-BE process map",
           "Functional requirements",
@@ -233,9 +276,9 @@ export const portfolioContent: PortfolioContent = {
           "Dashboard specification",
         ],
         result:
-          "Команда получила понятную спецификацию для реализации, а процесс отчетности стал прозрачнее и менее зависимым от ручной работы.",
+          "Команда получила спецификацию для реализации, а отчетность стала понятнее и менее зависимой от ручной работы.",
         tools: ["Miro", "Confluence", "Jira", "SQL", "Power BI"],
-        status: "Completed",
+        status: "Завершено",
         image: asset(
           "public/assets/cases/case-reporting.webp",
           "Иллюстрация квеста по автоматизации отчетности",
@@ -247,10 +290,11 @@ export const portfolioContent: PortfolioContent = {
       },
       {
         title: "Quest 02 — Улучшение CRM-процесса",
+        summary: "Структурировал workflow и требования, чтобы команды одинаково понимали этапы работы с клиентом.",
         challenge:
-          "Команда продаж и операционная команда по-разному понимали этапы работы с клиентом, из-за чего появлялись потери контекста и лишние ручные действия.",
+          "Sales и operations по-разному трактовали этапы клиента, что приводило к потере контекста и ручным обходным действиям.",
         role:
-          "Собрал требования у нескольких групп пользователей, описал текущий процесс, выявил узкие места и подготовил требования для обновления CRM workflow.",
+          "Собрал требования у групп пользователей, описал текущий процесс, выявил узкие места и подготовил требования к CRM workflow.",
         artifacts: [
           "Stakeholder interview notes",
           "BPMN / process diagram",
@@ -259,9 +303,9 @@ export const portfolioContent: PortfolioContent = {
           "Role-based scenarios",
         ],
         result:
-          "Процесс стал понятнее для команд, а требования к CRM были структурированы для дальнейшей разработки.",
+          "Команды получили единое понимание процесса, а требования к CRM стали готовыми для дальнейшей разработки.",
         tools: ["Miro", "Jira", "Confluence", "Draw.io"],
-        status: "Completed",
+        status: "Завершено",
         image: asset(
           "public/assets/cases/case-crm.webp",
           "Иллюстрация квеста по улучшению CRM-процесса",
@@ -273,8 +317,9 @@ export const portfolioContent: PortfolioContent = {
       },
       {
         title: "Quest 03 — Клиентский портал",
+        summary: "Помог определить MVP scope и сценарии портала для прозрачного отслеживания заявок.",
         challenge:
-          "Пользователям нужен был более понятный способ отслеживать статусы заявок и взаимодействовать с сервисной командой.",
+          "Пользователям не хватало понятного способа отслеживать статусы заявок и взаимодействовать с сервисной командой.",
         role:
           "Провел discovery, описал пользовательские сценарии, согласовал MVP scope и подготовил user stories с acceptance criteria.",
         artifacts: [
@@ -285,9 +330,9 @@ export const portfolioContent: PortfolioContent = {
           "UI flow notes",
         ],
         result:
-          "Команда получила согласованный scope и набор требований для запуска первой версии портала.",
+          "Команда получила согласованный scope и набор требований для запуска первой версии клиентского портала.",
         tools: ["Figma", "Miro", "Jira", "Confluence"],
-        status: "Completed",
+        status: "Завершено",
         image: asset(
           "public/assets/cases/case-portal.webp",
           "Иллюстрация квеста по клиентскому порталу",
@@ -302,7 +347,9 @@ export const portfolioContent: PortfolioContent = {
   achievements: {
     id: "achievements",
     eyebrow: "UNLOCKED ACHIEVEMENTS",
-    title: "Профессиональные достижения",
+    title: "Достижения, которые показывают delivery-value",
+    description:
+      "Фокус не на декоративных артефактах, а на ясности, согласовании и снижении неопределенности для команды.",
     icon: asset("public/assets/icons/icon-achievements.png", "Иконка достижений"),
     badges: [
       asset("public/assets/badges/badge-requirements.png", "Бейдж требований", {
@@ -332,10 +379,12 @@ export const portfolioContent: PortfolioContent = {
   contact: {
     id: "contact",
     eyebrow: "START A QUEST",
-    title: "Готовы начать новый квест?",
+    title: "Есть задача для анализа? Давайте обсудим",
+    description:
+      "Контактный блок для рекрутера, hiring manager или команды, которой нужен BA для discovery, требований или процессов.",
     icon: asset("public/assets/icons/icon-contact.png", "Иконка контакта"),
     text:
-      "Если вам нужен человек, который может понять бизнес-цель, структурировать требования, согласовать стейкхолдеров и помочь команде построить правильное решение — давайте обсудим задачу.",
+      "Если вам нужен человек, который быстро разберется в бизнес-цели, структурирует требования, синхронизирует стейкхолдеров и поможет команде двигаться к правильному решению — давайте обсудим задачу.",
     items: [
       { label: "Email", value: "[email@example.com]", href: "mailto:email@example.com" },
       { label: "LinkedIn", value: "[linkedin-url]", href: "#contact" },

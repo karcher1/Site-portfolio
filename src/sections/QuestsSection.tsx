@@ -11,10 +11,15 @@ export function QuestsSection({ content }: SectionProps) {
 
   return (
     <section id={section.id}>
-      <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
+      <SectionHeading
+        description={section.description}
+        eyebrow={section.eyebrow}
+        icon={section.icon}
+        title={section.title}
+      />
       <div className="grid gap-6">
         {section.items.map((quest) => (
-          <QuestCard key={quest.title} quest={quest} />
+          <QuestCard key={quest.title} labels={section.labels} quest={quest} />
         ))}
       </div>
     </section>

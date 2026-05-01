@@ -11,7 +11,12 @@ export function AchievementsSection({ content }: SectionProps) {
 
   return (
     <section id={section.id}>
-      <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
+      <SectionHeading
+        description={section.description}
+        eyebrow={section.eyebrow}
+        icon={section.icon}
+        title={section.title}
+      />
       <ol className="grid gap-4 md:grid-cols-2">
         {section.items.map((achievement, index) => (
           <li className="rpg-card p-5" key={achievement}>
@@ -28,7 +33,7 @@ export function AchievementsSection({ content }: SectionProps) {
                   String(index + 1).padStart(2, "0")
                 )}
               </span>
-              <span className="pixel-label text-[var(--color-accent-green)]">Unlocked</span>
+              <span className="pixel-label text-[var(--color-accent-green)]">Достижение</span>
             </div>
             <p className="leading-7 text-[var(--color-text-secondary)]">{achievement}</p>
           </li>

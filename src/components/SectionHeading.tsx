@@ -4,12 +4,13 @@ import { FallbackImage } from "./FallbackImage";
 type SectionHeadingProps = {
   eyebrow: string;
   title: string;
+  description?: string;
   icon: Asset;
 };
 
-export function SectionHeading({ eyebrow, title, icon }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, description, icon }: SectionHeadingProps) {
   return (
-    <div className="mb-6 flex items-center gap-4 sm:mb-8">
+    <div className="mb-6 flex items-start gap-4 sm:mb-8">
       <div className="section-heading-icon grid h-14 w-14 shrink-0 place-items-center p-2">
         <FallbackImage
           asset={icon}
@@ -23,6 +24,11 @@ export function SectionHeading({ eyebrow, title, icon }: SectionHeadingProps) {
         <h2 className="mt-1 text-2xl font-semibold tracking-normal text-[var(--color-text-primary)] sm:text-3xl">
           {title}
         </h2>
+        {description ? (
+          <p className="mt-3 max-w-3xl text-base leading-7 text-[var(--color-text-secondary)]">
+            {description}
+          </p>
+        ) : null}
       </div>
     </div>
   );

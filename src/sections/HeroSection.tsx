@@ -33,9 +33,16 @@ export function HeroSection({ content, profile, assets, nav }: HeroSectionProps)
             {content.title}
           </h1>
           <p className="mt-3 text-xl font-medium text-[var(--color-accent-cyan)]">{content.subtitle}</p>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-text-secondary)]">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--color-text-secondary)] sm:text-lg">
             {content.statement}
           </p>
+          <ul className="mt-6 flex max-w-2xl flex-wrap gap-2">
+            {content.highlights.map((highlight) => (
+              <li className="rpg-chip text-[var(--color-text-secondary)]" key={highlight}>
+                {highlight}
+              </li>
+            ))}
+          </ul>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink item={content.ctas.primary} />
             <ButtonLink item={content.ctas.secondary} variant="secondary" />
@@ -49,7 +56,7 @@ export function HeroSection({ content, profile, assets, nav }: HeroSectionProps)
               <p className="mt-1 text-sm text-[var(--color-muted)]">{profile.role}</p>
             </div>
             <span className="pixel-label rounded border border-[rgba(124,255,107,0.4)] bg-[rgba(124,255,107,0.1)] px-2 py-1 text-[var(--color-accent-green)]">
-              READY
+              ГОТОВ
             </span>
           </div>
           <div className="grid gap-6 sm:grid-cols-[180px_1fr] lg:grid-cols-1 xl:grid-cols-[190px_1fr]">

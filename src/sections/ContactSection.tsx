@@ -11,7 +11,12 @@ export function ContactSection({ content }: SectionProps) {
 
   return (
     <section id={section.id}>
-      <SectionHeading eyebrow={section.eyebrow} title={section.title} icon={section.icon} />
+      <SectionHeading
+        description={section.description}
+        eyebrow={section.eyebrow}
+        icon={section.icon}
+        title={section.title}
+      />
       <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
         <article className="rpg-panel">
           <p className="rpg-panel-title pixel-label">{section.eyebrow}</p>
