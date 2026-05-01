@@ -386,7 +386,7 @@ export const portfolioContent: PortfolioContent = {
     text:
       "Если вам нужен человек, который быстро разберется в бизнес-цели, структурирует требования, синхронизирует стейкхолдеров и поможет команде двигаться к правильному решению — давайте обсудим задачу.",
     items: [
-      { label: "Email", value: "[email@example.com]", href: "mailto:email@example.com" },
+      { label: "Email", value: "[email@example.com]", href: "#contact" },
       { label: "LinkedIn", value: "[linkedin-url]", href: "#contact" },
       { label: "Telegram", value: "[telegram-url]", href: "#contact" },
     ],

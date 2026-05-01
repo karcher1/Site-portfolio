@@ -1,29 +1,76 @@
-# Business Analyst RPG Portfolio — Codex base
+# Business Analyst RPG Portfolio
 
-Это стартовый пакет контекста для локального проекта портфолио бизнес-аналитика в стиле **Business Analyst RPG Portfolio**.
+Одностраничное портфолио Business Analyst в профессиональном 32-bit RPG-стиле.
 
-## Как использовать
+## Технологии
 
-1. Создай локальную папку проекта.
-2. Скопируй в неё эти файлы и папки.
-3. Положи сгенерированные ассеты в `public/assets/...` по именам из `docs/04-assets-manifest.md`.
-4. Запусти Codex из корня папки.
-5. Первым сообщением Codex дай задачу из `docs/05-codex-tasks.md` — Task 1.
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
 
-## Главная концепция
+## Установка зависимостей
 
-Сайт — одностраничное портфолио бизнес-аналитика в стиле профессионального 32-bit RPG-интерфейса.
+```bash
+npm install
+```
 
-Метафора:
+## Локальный запуск
 
-> Business Analyst = герой, который превращает бизнес-хаос в карту, требования и delivery-ready решения.
+```bash
+npm run dev
+```
 
-Секции:
+После запуска Vite покажет локальный URL в терминале.
 
-1. Hero / Player Profile
-2. About / Character Backstory
-3. Skills / Core Stats
-4. Tools / Inventory
-5. Case Studies / Completed Quests
-6. Achievements / Unlocked Achievements
-7. Contact / Start a Quest
+## Где редактировать контент
+
+Весь редактируемый текст портфолио хранится в:
+
+```text
+src/data/portfolioContent.ts
+```
+
+Там можно заменить имя, уровень, город, контакты, описания секций, навыки, инструменты, кейсы и ссылки.
+
+## Как заменить ассеты
+
+Сгенерированные изображения лежат в:
+
+```text
+public/assets/
+```
+
+Имена и назначение файлов описаны в:
+
+```text
+docs/04-assets-manifest.md
+```
+
+Для замены ассетов положите новые файлы в те же папки и используйте те же имена. Если файл из манифеста временно отсутствует, интерфейс использует fallback там, где он настроен.
+
+## Production build
+
+```bash
+npm run build
+```
+
+Готовая сборка появится в папке:
+
+```text
+dist/
+```
+
+## Preview production build
+
+```bash
+npm run preview
+```
+
+## Перед первым публичным деплоем
+
+- Заменить `[Твоё имя]`, уровень и город в `src/data/portfolioContent.ts`.
+- Заменить placeholder-контакты: `[email@example.com]`, `[linkedin-url]`, `[telegram-url]`, `[cv-file-or-link]`.
+- Обновить `href` для контактов после замены placeholder-значений.
+- Добавить `public/assets/brand/og-image.webp`, если нужен social preview.
+- При необходимости заменить анонимизированные кейсы на реальные, если их можно публиковать.
