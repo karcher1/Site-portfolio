@@ -1,0 +1,37 @@
+import { portfolioContent } from "./data/portfolioContent";
+import { AboutSection } from "./sections/AboutSection";
+import { AchievementsSection } from "./sections/AchievementsSection";
+import { ContactSection } from "./sections/ContactSection";
+import { HeroSection } from "./sections/HeroSection";
+import { QuestsSection } from "./sections/QuestsSection";
+import { SkillsSection } from "./sections/SkillsSection";
+import { ToolsSection } from "./sections/ToolsSection";
+
+const sections = [
+  AboutSection,
+  SkillsSection,
+  ToolsSection,
+  QuestsSection,
+  AchievementsSection,
+  ContactSection,
+];
+
+function App() {
+  return (
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+      <HeroSection
+        assets={portfolioContent.assets}
+        content={portfolioContent.hero}
+        nav={portfolioContent.nav}
+        profile={portfolioContent.profile}
+      />
+      <main className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+        {sections.map((Section) => (
+          <Section key={Section.name} content={portfolioContent} />
+        ))}
+      </main>
+    </div>
+  );
+}
+
+export default App;
