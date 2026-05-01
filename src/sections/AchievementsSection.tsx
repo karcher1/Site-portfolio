@@ -1,3 +1,4 @@
+import { FallbackImage } from "../components/FallbackImage";
 import { SectionHeading } from "../components/SectionHeading";
 import type { PortfolioContent } from "../data/portfolioContent";
 
@@ -15,8 +16,17 @@ export function AchievementsSection({ content }: SectionProps) {
         {section.items.map((achievement, index) => (
           <li className="rpg-card p-5" key={achievement}>
             <div className="mb-4 flex items-center gap-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded border border-[rgba(124,255,107,0.38)] bg-[rgba(124,255,107,0.1)] text-sm font-bold text-[var(--color-accent-green)]">
-                {String(index + 1).padStart(2, "0")}
+              <span className="achievement-badge">
+                {section.badges[index] ? (
+                  <FallbackImage
+                    asset={section.badges[index]}
+                    className="h-full w-full object-contain"
+                    fallbackClassName="h-full w-full text-sm text-[var(--color-accent-green)]"
+                    fallbackLabel={String(index + 1).padStart(2, "0")}
+                  />
+                ) : (
+                  String(index + 1).padStart(2, "0")
+                )}
               </span>
               <span className="pixel-label text-[var(--color-accent-green)]">Unlocked</span>
             </div>

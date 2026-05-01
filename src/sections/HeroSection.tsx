@@ -1,4 +1,5 @@
 import { ButtonLink } from "../components/ButtonLink";
+import { FallbackImage } from "../components/FallbackImage";
 import { PixelPanel } from "../components/PixelPanel";
 import { SiteHeader } from "../components/SiteHeader";
 import type { Asset, NavItem, PortfolioContent } from "../data/portfolioContent";
@@ -19,10 +20,9 @@ export function HeroSection({ content, profile, assets, nav }: HeroSectionProps)
       className="relative isolate overflow-hidden border-b border-[rgba(59,66,107,0.75)]"
       id="profile"
     >
-      <img
+      <FallbackImage
+        asset={assets.heroBackground}
         className="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.24] saturate-75"
-        src={assets.heroBackground.src}
-        alt={assets.heroBackground.alt}
       />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(11,16,32,0.72),rgba(11,16,32,0.94)_54%,rgba(11,16,32,1))]" />
       <SiteHeader nav={nav} />
@@ -54,7 +54,11 @@ export function HeroSection({ content, profile, assets, nav }: HeroSectionProps)
           </div>
           <div className="grid gap-6 sm:grid-cols-[180px_1fr] lg:grid-cols-1 xl:grid-cols-[190px_1fr]">
             <div className="avatar-frame mx-auto aspect-square w-44 overflow-hidden sm:w-full lg:w-52 xl:w-full">
-              <img className="h-full w-full object-cover" src={assets.avatar.src} alt={assets.avatar.alt} />
+              <FallbackImage
+                asset={assets.avatar}
+                className="h-full w-full object-cover"
+                fallbackClassName="h-full w-full text-center text-[var(--color-accent-gold)]"
+              />
             </div>
             <div>
               <p className="pixel-label text-[var(--color-accent-green)]">{profile.role}</p>

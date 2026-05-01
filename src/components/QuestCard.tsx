@@ -1,4 +1,5 @@
 import type { CaseStudy } from "../data/portfolioContent";
+import { FallbackImage } from "./FallbackImage";
 
 type QuestCardProps = {
   quest: CaseStudy;
@@ -9,10 +10,10 @@ export function QuestCard({ quest }: QuestCardProps) {
     <article className="rpg-panel overflow-hidden p-0">
       <div className="grid gap-0 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="quest-artwork min-h-56 bg-[var(--color-surface-elevated)] lg:min-h-full">
-          <img
+          <FallbackImage
+            asset={quest.image}
             className="h-full min-h-56 w-full object-cover opacity-80 saturate-75"
-            src={quest.image.src}
-            alt={quest.image.alt}
+            fallbackClassName="min-h-56 h-full w-full text-[var(--color-accent-gold)]"
           />
         </div>
         <div className="p-5 sm:p-6">

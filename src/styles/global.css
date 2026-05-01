@@ -215,6 +215,38 @@ a {
     box-shadow: inset 0 1px 0 rgba(248, 250, 252, 0.03);
   }
 
+  .asset-fallback {
+    display: grid;
+    place-items: center;
+    min-height: 2.5rem;
+    border: 1px solid rgba(59, 66, 107, 0.72);
+    border-radius: 0.25rem;
+    background:
+      linear-gradient(135deg, rgba(94, 234, 212, 0.1), transparent 52%),
+      rgba(11, 16, 32, 0.58);
+    font-family:
+      "Courier New", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .achievement-badge {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(124, 255, 107, 0.38);
+    border-radius: 0.25rem;
+    background:
+      linear-gradient(135deg, rgba(124, 255, 107, 0.16), transparent 52%),
+      rgba(124, 255, 107, 0.08);
+    color: var(--color-accent-green);
+    font-weight: 700;
+  }
+
   @media (min-width: 640px) {
     .rpg-panel {
       padding: 1.5rem;

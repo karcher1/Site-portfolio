@@ -2,6 +2,9 @@ export type Asset = {
   manifestPath: string;
   src: string;
   alt: string;
+  fallbackSrc?: string;
+  decorative?: boolean;
+  fallbackLabel?: string;
 };
 
 export type ProfileField = {
@@ -94,6 +97,7 @@ export type PortfolioContent = {
     eyebrow: string;
     title: string;
     icon: Asset;
+    badges: Asset[];
     items: string[];
   };
   contact: {
@@ -114,10 +118,21 @@ export type PortfolioContent = {
   };
 };
 
-const asset = (manifestPath: string, alt: string): Asset => ({
+type AssetOptions = {
+  fallbackManifestPath?: string;
+  decorative?: boolean;
+  fallbackLabel?: string;
+};
+
+const publicSrc = (manifestPath: string) => manifestPath.replace(/^public/, "");
+
+const asset = (manifestPath: string, alt: string, options: AssetOptions = {}): Asset => ({
   manifestPath,
-  src: manifestPath.replace(/^public/, ""),
-  alt,
+  src: publicSrc(manifestPath),
+  alt: options.decorative ? "" : alt,
+  fallbackSrc: options.fallbackManifestPath ? publicSrc(options.fallbackManifestPath) : undefined,
+  decorative: options.decorative,
+  fallbackLabel: options.fallbackLabel,
 });
 
 export const portfolioContent: PortfolioContent = {
@@ -224,6 +239,10 @@ export const portfolioContent: PortfolioContent = {
         image: asset(
           "public/assets/cases/case-reporting.webp",
           "Иллюстрация квеста по автоматизации отчетности",
+          {
+            fallbackManifestPath: "public/assets/cases/case-reporting.png",
+            fallbackLabel: "Reporting",
+          },
         ),
       },
       {
@@ -246,6 +265,10 @@ export const portfolioContent: PortfolioContent = {
         image: asset(
           "public/assets/cases/case-crm.webp",
           "Иллюстрация квеста по улучшению CRM-процесса",
+          {
+            fallbackManifestPath: "public/assets/cases/case-crm.png",
+            fallbackLabel: "CRM",
+          },
         ),
       },
       {
@@ -268,6 +291,10 @@ export const portfolioContent: PortfolioContent = {
         image: asset(
           "public/assets/cases/case-portal.webp",
           "Иллюстрация квеста по клиентскому порталу",
+          {
+            fallbackManifestPath: "public/assets/cases/case-portal.png",
+            fallbackLabel: "Portal",
+          },
         ),
       },
     ],
@@ -277,6 +304,23 @@ export const portfolioContent: PortfolioContent = {
     eyebrow: "UNLOCKED ACHIEVEMENTS",
     title: "Профессиональные достижения",
     icon: asset("public/assets/icons/icon-achievements.png", "Иконка достижений"),
+    badges: [
+      asset("public/assets/badges/badge-requirements.png", "Бейдж требований", {
+        fallbackLabel: "01",
+      }),
+      asset("public/assets/badges/badge-stakeholders.png", "Бейдж стейкхолдеров", {
+        fallbackLabel: "02",
+      }),
+      asset("public/assets/badges/badge-process.png", "Бейдж процессов", {
+        fallbackLabel: "03",
+      }),
+      asset("public/assets/badges/badge-data.png", "Бейдж данных", {
+        fallbackLabel: "04",
+      }),
+      asset("public/assets/badges/badge-delivery.png", "Бейдж delivery", {
+        fallbackLabel: "05",
+      }),
+    ],
     items: [
       "Разложил неопределенные бизнес-запросы на понятные требования",
       "Согласовал ожидания бизнеса и разработки",
@@ -301,9 +345,15 @@ export const portfolioContent: PortfolioContent = {
   },
   assets: {
     avatar: asset("public/assets/avatar/ba-avatar.png", "Портрет Business Analyst в RPG-стиле"),
-    heroBackground: asset("public/assets/backgrounds/hero-map.webp", ""),
-    pixelTexture: asset("public/assets/patterns/pixel-texture.webp", ""),
+    heroBackground: asset("public/assets/backgrounds/hero-map.webp", "", {
+      decorative: true,
+    }),
+    pixelTexture: asset("public/assets/patterns/pixel-texture.webp", "", {
+      decorative: true,
+    }),
     favicon: asset("public/assets/brand/favicon.png", "Favicon"),
-    ogImage: asset("public/assets/brand/og-image.webp", "Open Graph preview"),
+    ogImage: asset("public/assets/brand/og-image.webp", "Open Graph preview", {
+      fallbackLabel: "OG",
+    }),
   },
 };
