@@ -18,7 +18,7 @@ const sections = [
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <div className="min-h-screen overflow-x-hidden text-[var(--color-text-primary)]">
       <HeroSection
         assets={portfolioContent.assets}
         content={portfolioContent.hero}

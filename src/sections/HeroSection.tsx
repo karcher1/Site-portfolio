@@ -22,9 +22,9 @@ export function HeroSection({ content, profile, assets, nav }: HeroSectionProps)
     >
       <FallbackImage
         asset={assets.heroBackground}
-        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.24] saturate-75"
+        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.65] saturate-75"
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(11,16,32,0.72),rgba(11,16,32,0.94)_54%,rgba(11,16,32,1))]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(11,16,32,0.0),rgba(11,16,32,0.0)_54%,rgba(11,16,32,0.0))]" />
       <SiteHeader nav={nav} />
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 pb-14 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.96fr)] lg:items-center lg:px-8 lg:pb-24 lg:pt-16">
         <div className="flex flex-col justify-center">
